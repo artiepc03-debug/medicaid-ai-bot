@@ -63,3 +63,14 @@ def voice():
         voice="alice"
     )
     return str(response)
+from flask import Response
+from twilio.twiml.voice_response import VoiceResponse
+
+@app.route("/voice", methods=["POST"])
+def voice():
+    resp = VoiceResponse()
+    resp.say(
+        "Welcome to the Medicaid AI assistant. This system is now connected.",
+        voice="alice"
+    )
+    return Response(str(resp), mimetype="text/xml")
